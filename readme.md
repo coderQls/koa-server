@@ -18,7 +18,7 @@ git init
 
 生成'.git'隐藏文件夹, git 的本地仓库
 
-## 3 创建 ReadMe 文件
+## 3 创建 readme.md 文件
 
 # 二. 搭建项目
 
