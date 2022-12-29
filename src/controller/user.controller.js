@@ -5,29 +5,6 @@ class UserController {
     // 1. 获取数据
     const { user_name, password } = ctx.request.body
 
-    // 合法性
-    if (!user_name || !password) {
-      console.error('用户名或密码为空', ctx.request.body)
-      ctx.status = 400
-      ctx.body = {
-        // code  1: 前端错误 00：模块 01：错误类型
-        code: '10001',
-        msg: '用户名或密码为空',
-        result: '',
-      }
-      return
-    }
-    // 合理性
-    if (getUserInfo({ user_name })) {
-      ctx.status = 409
-      ctx.body = {
-        code: '10002',
-        message: '用户已经存在',
-        result: '',
-      }
-      return
-    }
-
     // 2. 操作数据库
     const res = await createUser(user_name, password)
     console.log(res)
