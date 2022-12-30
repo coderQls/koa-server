@@ -21,8 +21,8 @@ const User = seq.define(
     is_admin: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: 0,
-      comment: '是否为管理员, 0: 不是管理员; 1: 是管理员',
+      defaultValue: false,
+      comment: '是否为管理员, false: 不是管理员; true: 是管理员',
     },
   }
   // {
