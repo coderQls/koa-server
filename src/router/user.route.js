@@ -7,7 +7,7 @@ const {
   verifyLogin,
 } = require('../middleware/user.middleware')
 
-const auth = require('../middleware/auth.middleware')
+const { auth } = require('../middleware/auth.middleware')
 
 const {
   register,
