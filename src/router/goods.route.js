@@ -8,6 +8,7 @@ const {
   update,
   remove,
   restore,
+  findAll,
 } = require('../controller/goods.controller')
 
 const router = new Router({ prefix: '/goods' })
@@ -27,7 +28,11 @@ router.put('/update/:id', auth, hadAdminPermission, validator, update)
 
 // 下架商品
 router.post('/off/:id', auth, hadAdminPermission, remove)
+
 // 上架商品
 router.post('/on/:id', auth, hadAdminPermission, restore)
+
+// 获取商品列表
+router.get('/list', findAll)
 
 module.exports = router

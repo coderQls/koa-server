@@ -12,6 +12,7 @@ const {
   updateGoods,
   removeGoods,
   restoreGoods,
+  findGoods,
 } = require('../service/goods.service')
 
 class GoodsContrller {
@@ -96,6 +97,19 @@ class GoodsContrller {
       }
     } catch (err) {
       console.log(err)
+    }
+  }
+
+  async findAll(ctx) {
+    // 1. 解析pageNum和pageSize
+    const { pageNum = 1, pageSize = 10 } = ctx.request.query
+    // 2. 调用数据处理相关方法
+    const res = await findGoods(Number(pageNum), Number(pageSize))
+    // 3. 返回结果
+    ctx.body = {
+      code: 0,
+      message: '获取商品列表成功',
+      result: res,
     }
   }
 }
