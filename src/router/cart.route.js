@@ -11,6 +11,9 @@ const {
   findAll,
   update,
   remove,
+  selectAll,
+  unselectAll,
+  total,
 } = require('../controller/cart.controller')
 
 // 2. 实例化router对象
@@ -37,6 +40,15 @@ router.patch(
 
 // 3.4 删除购物车商品
 router.delete('/remove', auth, validator({ ids: 'array' }), remove)
+
+// 3.5 全选
+router.post('/selectAll', auth, selectAll)
+
+// 3.6 全不选
+router.post('/unselectAll', auth, unselectAll)
+
+// 3.7 获取购物车商品总数
+router.get('/total', auth, total)
 
 // 4. 导出router对象
 module.exports = router

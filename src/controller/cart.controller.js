@@ -4,6 +4,9 @@ const {
   findCarts,
   updateCarts,
   removeCarts,
+  selectAllCarts,
+  unselectAllCarts,
+  totalCarts,
 } = require('../service/cart.service')
 
 class CartController {
@@ -67,6 +70,39 @@ class CartController {
     ctx.body = {
       code: 0,
       message: '删除购物车成功',
+      result: res,
+    }
+  }
+
+  async selectAll(ctx) {
+    const user_id = ctx.state.user.id
+    const res = await selectAllCarts(user_id)
+
+    ctx.body = {
+      code: 0,
+      message: '全部选中',
+      result: res,
+    }
+  }
+
+  async unselectAll(ctx) {
+    const user_id = ctx.state.user.id
+    const res = await unselectAllCarts(user_id)
+
+    ctx.body = {
+      code: 0,
+      message: '全部不选中',
+      result: res,
+    }
+  }
+
+  async total(ctx) {
+    const user_id = ctx.state.user.id
+    const res = await totalCarts(user_id)
+
+    ctx.body = {
+      code: 0,
+      message: '购物车商品总数',
       result: res,
     }
   }

@@ -71,6 +71,39 @@ class CartService {
     })
     return res
   }
+
+  async selectAllCarts(user_id) {
+    return await Cart.update(
+      { selected: true },
+      {
+        where: {
+          user_id,
+        },
+      }
+    )
+  }
+
+  async unselectAllCarts(user_id) {
+    return await Cart.update(
+      { selected: false },
+      {
+        where: {
+          user_id,
+        },
+      }
+    )
+  }
+
+  async totalCarts(user_id) {
+    console.log(user_id)
+    const { count } = await Cart.findAndCountAll({
+      where: {
+        user_id,
+      },
+    })
+    console.log(44, count)
+    return count
+  }
 }
 
 module.exports = new CartService()
