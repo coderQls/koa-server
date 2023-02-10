@@ -29,7 +29,7 @@ class CartService {
   }
 
   async findCarts(pageNum, pageSize) {
-    console.log(pageNum, pageSize)
+    // console.log(pageNum, pageSize)
     const { count, rows } = await Cart.findAndCountAll({
       attributes: ['id', 'number', 'selected'],
       offset: (pageNum - 1) * pageSize,
@@ -47,6 +47,18 @@ class CartService {
       total: count,
       list: rows,
     }
+  }
+
+  async updateCarts(params) {
+    const { id, number, selected } = params
+
+    // 根据主键查找数据
+    const res = await Cart.findByPk(id)
+
+    if (!res) return ''
+    number ? (res.number = number) : ''
+    selected ? res.selected : ''
+    return await res.save()
   }
 }
 
