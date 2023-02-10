@@ -60,6 +60,17 @@ class CartService {
     selected ? res.selected : ''
     return await res.save()
   }
+
+  async removeCarts(ids) {
+    const res = await Cart.destroy({
+      where: {
+        id: {
+          [Op.in]: ids,
+        },
+      },
+    })
+    return res
+  }
 }
 
 module.exports = new CartService()

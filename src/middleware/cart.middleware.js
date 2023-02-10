@@ -2,6 +2,7 @@ const { cartFormatError } = require('../constant/error.type')
 
 const validator = (rules) => {
   return async (ctx, next) => {
+    console.log(123, ctx.request)
     try {
       ctx.verifyParams(rules)
     } catch (err) {
