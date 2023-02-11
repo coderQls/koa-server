@@ -11,6 +11,7 @@ const {
   findAll,
   update,
   remove,
+  setDefault,
 } = require('../controller/addr.controller')
 
 // 2. 实例化对象
@@ -53,5 +54,7 @@ router.put(
 // 删除地址
 router.delete('/remove/:id', auth, remove)
 
+// 设置默认地址
+router.patch('/setDefault/:id', auth, setDefault)
 // 4. 导出router对象
 module.exports = router

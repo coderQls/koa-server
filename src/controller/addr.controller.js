@@ -3,6 +3,7 @@ const {
   findAllAddr,
   updateAddr,
   deleteAddr,
+  setDefaultAddr,
 } = require('../service/address.service')
 
 const create = async (ctx) => {
@@ -48,10 +49,21 @@ const remove = async (ctx) => {
     result: res,
   }
 }
+const setDefault = async (ctx) => {
+  const user_id = ctx.state.user.id
+  const id = ctx.request.params.id
+  const res = await setDefaultAddr(user_id, id)
+  ctx.body = {
+    code: 0,
+    message: '设置默认地址成功',
+    result: res,
+  }
+}
 
 module.exports = {
   create,
   findAll,
   update,
   remove,
+  setDefault,
 }

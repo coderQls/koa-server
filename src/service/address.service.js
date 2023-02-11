@@ -1,3 +1,4 @@
+const { Op } = require('sequelize')
 const Address = require('../model/address.model')
 
 class AddrService {
@@ -36,6 +37,31 @@ class AddrService {
     })
     // console.log(res)
     return res
+  }
+
+  async setDefaultAddr(user_id, id) {
+    console.log(user_id)
+    await Address.update(
+      {
+        is_default: false,
+      },
+      {
+        where: {
+          user_id,
+        },
+      }
+    )
+    await Address.update(
+      {
+        is_default: true,
+      },
+      {
+        where: {
+          user_id,
+          id,
+        },
+      }
+    )
   }
 }
 
