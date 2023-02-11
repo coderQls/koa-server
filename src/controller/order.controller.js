@@ -1,4 +1,4 @@
-const { createOrder } = require('../service/order.service')
+const { createOrder, findAllOrder } = require('../service/order.service')
 
 const create = async (ctx) => {
   const user_id = ctx.state.user.id
@@ -21,6 +21,18 @@ const create = async (ctx) => {
   }
 }
 
+const findAll = async (ctx) => {
+  const { pageNum = 1, pageSize = 10, status = 0 } = ctx.request.params
+
+  const res = await findAllOrder(pageNum - 0, pageSize - 0, status - 0)
+  ctx.body = {
+    code: 0,
+    message: '获取订单列表成功',
+    result: res,
+  }
+}
+
 module.exports = {
   create,
+  findAll,
 }

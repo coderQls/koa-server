@@ -5,7 +5,7 @@ const router = new Router({ prefix: '/orders' })
 const { auth } = require('../middleware/auth.middleware')
 const { validator } = require('../middleware/order.middleware')
 
-const { create } = require('../controller/order.controller')
+const { create, findAll } = require('../controller/order.controller')
 
 // 提交订单
 router.post(
@@ -18,5 +18,7 @@ router.post(
   }),
   create
 )
+
+router.get('/list', auth, findAll)
 
 module.exports = router

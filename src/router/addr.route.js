@@ -51,10 +51,10 @@ router.put(
   update
 )
 
-// 删除地址
+// 3.4 删除地址
 router.delete('/remove/:id', auth, remove)
 
-// 设置默认地址
+// 3.5 设置默认地址
 router.patch('/setDefault/:id', auth, setDefault)
 // 4. 导出router对象
 module.exports = router
