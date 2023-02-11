@@ -27,6 +27,16 @@ class AddrService {
     // console.log(res)
     return res
   }
+
+  async deleteAddr(id) {
+    const res = await Address.destroy({
+      where: {
+        id,
+      },
+    })
+    // console.log(res)
+    return res
+  }
 }
 
 module.exports = new AddrService()

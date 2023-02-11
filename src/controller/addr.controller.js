@@ -2,6 +2,7 @@ const {
   createAddr,
   findAllAddr,
   updateAddr,
+  deleteAddr,
 } = require('../service/address.service')
 
 const create = async (ctx) => {
@@ -30,7 +31,7 @@ const findAll = async (ctx) => {
 
 const update = async (ctx) => {
   const id = ctx.request.params.id
-  const res = await updateAddr(id, ctx.request.body)
+  await updateAddr(id, ctx.request.body)
   ctx.body = {
     code: 0,
     message: '更新地址成功',
@@ -38,8 +39,19 @@ const update = async (ctx) => {
   }
 }
 
+const remove = async (ctx) => {
+  const id = ctx.request.params.id
+  const res = await deleteAddr(id)
+  ctx.body = {
+    code: 0,
+    message: '删除地址成功',
+    result: res,
+  }
+}
+
 module.exports = {
   create,
   findAll,
   update,
+  remove,
 }

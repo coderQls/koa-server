@@ -6,7 +6,12 @@ const { auth } = require('../middleware/auth.middleware')
 const { validator } = require('../middleware/addr.middleware')
 
 // 控制器
-const { create, findAll, update } = require('../controller/addr.controller')
+const {
+  create,
+  findAll,
+  update,
+  remove,
+} = require('../controller/addr.controller')
 
 // 2. 实例化对象
 const router = new Router({ prefix: '/address' })
@@ -44,6 +49,9 @@ router.put(
   }),
   update
 )
+
+// 删除地址
+router.delete('/remove/:id', auth, remove)
 
 // 4. 导出router对象
 module.exports = router
