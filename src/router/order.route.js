@@ -5,7 +5,7 @@ const router = new Router({ prefix: '/orders' })
 const { auth } = require('../middleware/auth.middleware')
 const { validator } = require('../middleware/order.middleware')
 
-const { create, findAll } = require('../controller/order.controller')
+const { create, findAll, update } = require('../controller/order.controller')
 
 // 提交订单
 router.post(
@@ -19,6 +19,10 @@ router.post(
   create
 )
 
+// 获取订单列表
 router.get('/list', auth, findAll)
+
+// 更新订单状态
+router.patch('/update/:id', auth, validator({ status: 'number' }), update)
 
 module.exports = router
